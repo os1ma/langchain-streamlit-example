@@ -2,6 +2,8 @@
 
 Streamlit で LangChain を使ったチャットボットを実装するサンプルです。
 
+![demo](./media/demo.gif)
+
 チャットボットには以下の機能が実装されています。
 
 - Memory 機能による過去のやりとりを踏まえた応答
