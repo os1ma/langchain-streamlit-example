@@ -1,7 +1,4 @@
-import os
-
 import langchain
-import openai
 import streamlit as st
 from dotenv import load_dotenv
 from langchain.agents import AgentType, initialize_agent, load_tools
@@ -12,7 +9,6 @@ langchain.verbose = True
 
 load_dotenv()
 
-st_callback = StreamlitCallbackHandler(st.container())
 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, streaming=True)
 tools = load_tools(["terminal"])
 agent = initialize_agent(tools, llm, agent=AgentType.OPENAI_FUNCTIONS)
