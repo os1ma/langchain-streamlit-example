@@ -1,5 +1,12 @@
 # langchain-streamlit-example
 
+Streamlit で LangChain を使ったチャットボットを実装するサンプルです。
+
+チャットボットには以下の機能が実装されています。
+
+- Memory 機能による過去のやりとりを踏まえた応答
+- Vector Store (Chroma) を使った独自データをへの Q&A
+
 ## 実行手順
 
 .env ファイルを以下の内容で作成
