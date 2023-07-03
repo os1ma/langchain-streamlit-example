@@ -44,3 +44,17 @@ streamlit run app.py
 ```
 langchain-streamlit-exampleは何をimportしていますか？
 ```
+
+## 参考
+
+### Streamlit
+
+- [Build a ChatGPT-like app - Build conversational apps - Streamlit Docs](https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps#build-a-chatgpt-like-app)
+
+### LangChain
+
+- [Streamlit | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/callbacks/integrations/streamlit)
+- [OpenAI functions | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent)
+- [Add Memory to OpenAI Functions Agent | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/agents/how_to/add_memory_openai_functions)
+- [Chroma | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/data_connection/vectorstores/integrations/chroma)
+- [Vectorstore Agent | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/agents/toolkits/vectorstore)
