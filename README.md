@@ -42,5 +42,5 @@ streamlit run app.py
 例えば以下のプロンプトで動作確認できます。
 
 ```
-langchain-streamlit-example は何を import していますか？
+langchain-streamlit-exampleは何をimportしていますか？
 ```
