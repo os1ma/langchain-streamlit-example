@@ -19,8 +19,6 @@ agent = initialize_agent(tools, llm, agent=AgentType.OPENAI_FUNCTIONS)
 
 st.title("ChatGPT-like clone")
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
