@@ -51,7 +51,7 @@ def create_agent():
 if "agent" not in st.session_state:
     st.session_state.agent = create_agent()
 
-st.title("ChatGPT-like clone")
+st.title("langchain-streamlit-example")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
