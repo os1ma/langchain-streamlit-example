@@ -1,10 +1,21 @@
 import os
 
+import langchain
 import openai
 import streamlit as st
 from dotenv import load_dotenv
+from langchain.agents import AgentType, initialize_agent, load_tools
+from langchain.callbacks import StreamlitCallbackHandler
+from langchain.llms import OpenAI
+
+langchain.verbose = True
 
 load_dotenv()
+
+st_callback = StreamlitCallbackHandler(st.container())
+llm = OpenAI(temperature=0, streaming=True)
+tools = load_tools(["terminal"])
+agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
 
 st.title("ChatGPT-like clone")
 
@@ -26,17 +37,8 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        message_placeholder = st.empty()
-        full_response = ""
-        for response in openai.ChatCompletion.create(
-            model=st.session_state["openai_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
-            stream=True,
-        ):
-            full_response += response.choices[0].delta.get("content", "")
-            message_placeholder.markdown(full_response + "▌")
-        message_placeholder.markdown(full_response)
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
+        st_callback = StreamlitCallbackHandler(st.container())
+        response = agent.run(prompt, callbacks=[st_callback])
+        st.markdown(response)
+
+    st.session_state.messages.append({"role": "assistant", "content": response})
