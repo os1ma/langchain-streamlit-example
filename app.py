@@ -6,16 +6,16 @@ import streamlit as st
 from dotenv import load_dotenv
 from langchain.agents import AgentType, initialize_agent, load_tools
 from langchain.callbacks import StreamlitCallbackHandler
-from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 
 langchain.verbose = True
 
 load_dotenv()
 
 st_callback = StreamlitCallbackHandler(st.container())
-llm = OpenAI(temperature=0, streaming=True)
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, streaming=True)
 tools = load_tools(["terminal"])
-agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
+agent = initialize_agent(tools, llm, agent=AgentType.OPENAI_FUNCTIONS)
 
 st.title("ChatGPT-like clone")
 
