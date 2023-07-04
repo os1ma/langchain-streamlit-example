@@ -35,7 +35,7 @@ def create_agent():
         name="langchain-streamlit-example",
         description="Source code of application named `langchain-streamlit-example`",
     )
-    toolkit = VectorStoreToolkit(vectorstore_info=vectorstore_info)
+    toolkit = VectorStoreToolkit(vectorstore_info=vectorstore_info, llm=llm)
     tools = toolkit.get_tools()
 
     # Setup Memory
