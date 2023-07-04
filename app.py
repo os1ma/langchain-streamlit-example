@@ -1,9 +1,12 @@
+import time
+
 import openai
 import streamlit as st
 from dotenv import load_dotenv
 from langchain.agents import AgentType, initialize_agent
 from langchain.agents.agent_toolkits import VectorStoreInfo, VectorStoreToolkit
 from langchain.callbacks import StreamlitCallbackHandler
+from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
@@ -66,8 +69,17 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
+        # Streaming で動いていることが分かりやすいようにするためのコールバック
+        class DelayCallbackHandler(BaseCallbackHandler):
+            def on_llm_new_token(self, token: str, **kwargs) -> None:
+                time.sleep(0.1)
+
+        delay_callback = DelayCallbackHandler()
+
         st_callback = StreamlitCallbackHandler(st.container())
-        response = st.session_state.agent.run(prompt, callbacks=[st_callback])
+        response = st.session_state.agent.run(
+            prompt, callbacks=[st_callback, delay_callback]
+        )
         st.markdown(response)
 
     st.session_state.messages.append({"role": "assistant", "content": response})
