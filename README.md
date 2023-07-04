@@ -7,7 +7,7 @@ Streamlit で LangChain を使ったチャットボットを実装するサン�
 チャットボットには以下の機能が実装されています。
 
 - Memory 機能による過去のやりとりを踏まえた応答
-- Vector Store (Chroma) を使った独自データをへの Q&A
+- Vector Store (Chroma) を使った独自データへの Q&A
 
 ## 実行手順
 
