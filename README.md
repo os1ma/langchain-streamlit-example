@@ -68,3 +68,4 @@ streamlit run app.py
 - [Add Memory to OpenAI Functions Agent | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/agents/how_to/add_memory_openai_functions)
 - [Chroma | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/data_connection/vectorstores/integrations/chroma)
 - [Vectorstore Agent | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/agents/toolkits/vectorstore)
+- [DuckDuckGo Search | 🦜️🔗 Langchain](https://python.langchain.com/docs/modules/agents/tools/integrations/ddg)
