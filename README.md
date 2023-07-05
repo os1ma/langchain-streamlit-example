@@ -59,6 +59,7 @@ streamlit run app.py
 ### Streamlit
 
 - [Build a ChatGPT-like app - Build conversational apps - Streamlit Docs](https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps#build-a-chatgpt-like-app)
+- [streamlit/llm-examples](https://github.com/streamlit/llm-examples)
 
 ### LangChain
 
