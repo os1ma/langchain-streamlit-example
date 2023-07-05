@@ -16,7 +16,8 @@ from langchain.vectorstores import Chroma
 
 from create_index import CHROMA_PERSIST_DIRECTORY
 
-ENABLE_DELAY = False
+ENABLE_STREAMING_DELAY = True
+STREAMING_DELAY_SEC = 0.01
 
 openai.log = "debug"
 
@@ -81,11 +82,11 @@ if prompt := st.chat_input("What is up?"):
         st_callback = StreamlitCallbackHandler(st.container())
         callbacks.append(st_callback)
 
-        if ENABLE_DELAY:
+        if ENABLE_STREAMING_DELAY:
             # Streamingで動いていることが分かりやすいようにするためのコールバック
             class DelayCallbackHandler(BaseCallbackHandler):
                 def on_llm_new_token(self, token: str, **kwargs) -> None:
-                    time.sleep(0.1)
+                    time.sleep(STREAMING_DELAY_SEC)
 
             delay_callback = DelayCallbackHandler()
             callbacks.append(delay_callback)
