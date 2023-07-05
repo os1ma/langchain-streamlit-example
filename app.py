@@ -11,6 +11,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import MessagesPlaceholder
+from langchain.tools import DuckDuckGoSearchRun
 from langchain.vectorstores import Chroma
 
 from create_index import CHROMA_PERSIST_DIRECTORY
@@ -35,8 +36,12 @@ def create_agent():
         name="langchain-streamlit-example",
         description="Source code of application named `langchain-streamlit-example`",
     )
-    toolkit = VectorStoreToolkit(vectorstore_info=vectorstore_info, llm=llm)
-    tools = toolkit.get_tools()
+    vectorstore_toolkit = VectorStoreToolkit(vectorstore_info=vectorstore_info, llm=llm)
+    tools = vectorstore_toolkit.get_tools()
+
+    # Setup DuckDuckGo
+    search = DuckDuckGoSearchRun()
+    tools.append(search)
 
     # Setup Memory
     agent_kwargs = {

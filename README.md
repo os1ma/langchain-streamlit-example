@@ -8,6 +8,7 @@ Streamlit で LangChain を使ったチャットボットを実装するサン�
 
 - Memory 機能による過去のやりとりを踏まえた応答
 - Vector Store (Chroma) を使った独自データへの Q&A
+- DuckDuckGo での Web 検索 (API キー不要)
 
 ## 実行手順
 
@@ -50,9 +51,8 @@ streamlit run app.py
 
 例えば以下のプロンプトで動作確認できます。
 
-```
-langchain-streamlit-exampleは何をimportしていますか？
-```
+- `langchain-streamlit-exampleは何をimportしていますか？`
+- `今日のニュースを教えて`
 
 ## 参考
 
