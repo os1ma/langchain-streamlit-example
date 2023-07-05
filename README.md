@@ -49,6 +49,8 @@ python create_index.py
 streamlit run app.py
 ```
 
+※ `streamlit run app_model_selectable.py` とすると、モデルが選択できるバージョンが起動します
+
 例えば以下のプロンプトで動作確認できます。
 
 - `langchain-streamlit-exampleは何をimportしていますか？`
