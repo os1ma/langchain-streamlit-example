@@ -12,7 +12,6 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import MessagesPlaceholder
 from langchain.tools import DuckDuckGoSearchRun, WikipediaQueryRun
-from langchain.utilities import WikipediaAPIWrapper
 from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.vectorstores import Chroma
 
