@@ -3,7 +3,7 @@ import time
 import openai
 import streamlit as st
 from dotenv import load_dotenv
-from langchain.agents import AgentType, initialize_agent
+from langchain.agents import AgentType, initialize_agent, load_tools
 from langchain.agents.agent_toolkits import VectorStoreInfo, VectorStoreToolkit
 from langchain.callbacks import StreamlitCallbackHandler
 from langchain.callbacks.base import BaseCallbackHandler
@@ -11,8 +11,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import MessagesPlaceholder
-from langchain.tools import DuckDuckGoSearchRun, WikipediaQueryRun
-from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.vectorstores import Chroma
 
 from create_index import CHROMA_PERSIST_DIRECTORY
@@ -28,6 +26,9 @@ load_dotenv()
 def create_agent():
     llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, streaming=True)
 
+    # Setup DuckDuckGo and Wikipedia
+    tools = load_tools(["ddg-search", "wikipedia"])
+
     # Setup VectorStore
     embeddings = OpenAIEmbeddings()
     db = Chroma(
@@ -39,15 +40,8 @@ def create_agent():
         description="Source code of application named `langchain-streamlit-example`",
     )
     vectorstore_toolkit = VectorStoreToolkit(vectorstore_info=vectorstore_info, llm=llm)
-    tools = vectorstore_toolkit.get_tools()
-
-    # Setup DuckDuckGo
-    search = DuckDuckGoSearchRun()
-    tools.append(search)
-
-    # Setup Wikipedia
-    wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
-    tools.append(wikipedia)
+    vectorstore_tools = vectorstore_toolkit.get_tools()
+    tools.extend(vectorstore_tools)
 
     # Setup Memory
     agent_kwargs = {

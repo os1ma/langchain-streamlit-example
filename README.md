@@ -57,7 +57,7 @@ streamlit run app.py
 例えば以下のプロンプトで動作確認できます。
 
 - `langchain-streamlit-exampleは何をimportしていますか？`
-- `今日のニュースを教えて`
+- `ChatGPTのニュースを教えて`
 - `WikipediaでChatGPTについて調べて教えて`
 
 ## 参考
