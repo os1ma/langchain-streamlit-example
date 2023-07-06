@@ -11,7 +11,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import MessagesPlaceholder
-from langchain.tools import DuckDuckGoSearchRun
+from langchain.tools import DuckDuckGoSearchRun, WikipediaQueryRun
+from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.vectorstores import Chroma
 
 from create_index import CHROMA_PERSIST_DIRECTORY
@@ -43,6 +44,10 @@ def create_agent():
     # Setup DuckDuckGo
     search = DuckDuckGoSearchRun()
     tools.append(search)
+
+    # Setup Wikipedia
+    wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
+    tools.append(wikipedia)
 
     # Setup Memory
     agent_kwargs = {

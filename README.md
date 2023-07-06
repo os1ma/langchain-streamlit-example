@@ -4,11 +4,14 @@ Streamlit で LangChain を使ったチャットボットを実装するサン�
 
 ![demo](./media/demo.gif)
 
+## 機能
+
 チャットボットには以下の機能が実装されています。
 
 - Memory 機能による過去のやりとりを踏まえた応答
 - Vector Store (Chroma) を使った独自データへの Q&A
 - DuckDuckGo での Web 検索 (API キー不要)
+- Wikipedia の検索 (API キー不要)
 
 ## 実行手順
 
@@ -55,6 +58,7 @@ streamlit run app.py
 
 - `langchain-streamlit-exampleは何をimportしていますか？`
 - `今日のニュースを教えて`
+- `WikipediaでChatGPTについて調べて教えて`
 
 ## 参考
 
